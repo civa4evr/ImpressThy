@@ -5,20 +5,47 @@ class Add extends React.Component{
     super(props);
     this.state={
       newIncome: 0,
-      incDesc: '',
+      incDesc: 'x',
+      incArray: [...JSON.parse(localStorage.getItem('incStore'))],
+
     };
   }
   acceptIncome = (event) => {
-    this.setstate(
-      {[event.target.name]:event.target.value}
+    let varType = event.target.name;
+    let varValue = event.target.value;
+    this.setState(
+      {[varType]:varValue}
     );
   }
+
+  submitIncome = (event) => {
+    event.preventDefault();
+    let localArray = [...this.state.incArray];
+    localArray.push(this.state.newIncome);
+    this.setState({
+      incArray: localArray,
+     });
+  }
+
+
+  componentDidUpdate(preProp,preState) {
+    if (preState.incArray.length !== this.state.incArray.length) {
+      const storePut = JSON.stringify(this.state.incArray);
+      localStorage.setItem('incStore',storePut);
+      alert ('New Income Added');
+    }
+  }
+
+
   render() {
     return (
     <form>
-     <input type="number" name="newIncome" placeholder="Add the Income here"></input>
-     <input type="text" name="incDesc" placeholder="Add comment if needed"></input>
-     <input type="submit" name="submit" value="Submit"></input>
+    <h1>{this.state.newIncome}</h1>
+    <h1>{this.state.incDesc}</h1>
+    {this.state.incArray.map((note, index) => <div key={index}>{note}</div>)}
+     <input type="number" name="newIncome" placeholder="Add the Income here" onChange={this.acceptIncome}></input>
+     <input type="text" name="incDesc" placeholder="Add comment if needed" onChange={this.acceptIncome}></input>
+     <button name="submit" onClick={this.submitIncome}>Submit</button>
      <input type="reset" name="reset" value="Reset"></input>
     </form>
     );
