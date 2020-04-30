@@ -7,7 +7,7 @@ class Add extends React.Component{
       newIncome: 0,
       incDesc: 'x',
       incArray: [...JSON.parse(localStorage.getItem('incStore'))],
-
+      incArray2: [...JSON.parse(localStorage.getItem('inc2Store'))]
     };
   }
   acceptIncome = (event) => {
@@ -22,17 +22,29 @@ class Add extends React.Component{
     event.preventDefault();
     let localArray = [...this.state.incArray];
     localArray.push(this.state.newIncome);
+
+    let localArray2 = [...this.state.incArray2];
+    localArray2.push(this.state.incDesc);
+
     this.setState({
       incArray: localArray,
+      incArray2: localArray2
      });
   }
 
 
   componentDidUpdate(preProp,preState) {
-    if (preState.incArray.length !== this.state.incArray.length) {
+    if ((preState.incArray.length !== this.state.incArray.length)||
+        (preState.incArray2.length !== this.state.incArray2.length)) {
+
       const storePut = JSON.stringify(this.state.incArray);
       localStorage.setItem('incStore',storePut);
-      alert ('New Income Added');
+
+      const storePut2 = JSON.stringify(this.state.incArray2);
+      localStorage.setItem('inc2Store',storePut2);
+
+      const check = localStorage.getItem('inc2Store');
+      alert ('New Income Added' + check);
     }
   }
 

@@ -12,25 +12,21 @@ class App extends Component {
       renderArrayExp: [...JSON.parse(localStorage.getItem('expStore'))],
       renderArrayExp2: [...JSON.parse(localStorage.getItem('exp2Store'))],
       renderArrayInc: [...JSON.parse(localStorage.getItem('incStore'))],
+      renderArrayInc2: [...JSON.parse(localStorage.getItem('inc2Store'))]
+
     }
     this.showSelected = this.showSelected.bind(this);
 
   }
   componentDidMount() {
-    const storeGetExp = localStorage.getItem('expStore');
-//  const storeGetExp2 = localStorage.getItem('exp2Store');
+    const storeGetExp = JSON.parse(localStorage.getItem('expStore'));
+    const storeGetInc = JSON.parse(localStorage.getItem('incStore'));
+ 
 
-    const storeGetInc = localStorage.getItem('incStore');
-
-    const resultParsedExp = JSON.parse(storeGetExp);
-    const resultParsedInc = JSON.parse(storeGetInc);
-
-    if (resultParsedExp) {
       alert('mounted');
-      alert ("Expenses: " + resultParsedExp.map((note,index)=>note));
-      alert ("Incomes: " + resultParsedInc.map((note,index)=>note));
-
-    }    
+      alert ("Total Expense Entries: " + (storeGetExp) ? storeGetExp.length : 0);
+      alert ("Total Income Entries: "  + (storeGetInc) ? storeGetInc.length : 0);
+    
   }
 
 showSelected(opt) {
@@ -66,14 +62,9 @@ render() {
 
     <h1 id="data">
 
-  {this.state.renderArrayExp.map((data,index) => <div> {data}  {this.state.renderArrayExp2[index]} </div>)}
-      
- 
+  {this.state.renderArrayExp.map((data,index) => <div> {"-" + data}  {this.state.renderArrayExp2[index]} </div>)}
+  {this.state.renderArrayInc.map((data,index) => <div> {'+' + data}  {this.state.renderArrayInc2[index]} </div>)}
 
-
-
-
-    
     </h1>
 
     <hr></hr>
