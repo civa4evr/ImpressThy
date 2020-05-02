@@ -1,15 +1,23 @@
 import React from 'react';
 
-class Exp extends React.Component{
+class Exp  extends React.Component {
   constructor(props) {
     super(props);
     this.state={
-      newExpense: 0,
-      expDesc: 'x',
-      expArray: [...JSON.parse(localStorage.getItem('expStore'))],
-      expArray2: [...JSON.parse(localStorage.getItem('exp2Store'))]
+      newExpense: Number,
+      expDesc: String,
+      expArray: (localStorage.getItem('valueStore')) ? [...JSON.parse(localStorage.getItem('valueStore'))] : [Number],
+      expArray2: (localStorage.getItem('descStore')) ? [...JSON.parse(localStorage.getItem('descStore'))] : [String]
     };
   }
+  aweSome () {
+//    alert('bye');
+      alert ('bye');
+//    this.props.aweSome("dispAddExp");
+//    this.props.aweSome("dispAddInc");
+
+  }
+
   acceptExpense = (event) => {
     let varType = event.target.name;
     let varValue = event.target.value;
@@ -21,7 +29,7 @@ class Exp extends React.Component{
   submitExpense = (event) => {
     event.preventDefault();
     let localArray1 = [...this.state.expArray];
-    localArray1.push(this.state.newExpense);
+    localArray1.push(-this.state.newExpense);
 
     let localArray2 = [...this.state.expArray2];
     localArray2.push(this.state.expDesc);
@@ -37,26 +45,29 @@ componentDidUpdate(preProp,preState) {
   if ((preState.expArray.length !== this.state.expArray.length) ||
       (preState.expArray2.length !== this.state.expArray2.length)) {
     const storePut = JSON.stringify(this.state.expArray);
-    localStorage.setItem('expStore',storePut);
+    localStorage.setItem('valueStore',storePut);
 
     const storePut2 = JSON.stringify(this.state.expArray2);
-    localStorage.setItem('exp2Store',storePut2);
-
-    alert ('New Expense Added');
+    localStorage.setItem('descStore',storePut2);
+    
+    alert ('working : ' + storePut)
+    alert ('New Expense Added - ' + this.state.expDesc + ' : ' + this.state.newExpense);
   } 
 }
 
 
   render() {
     return (
-    <form>
-    <h1>{this.state.newExpense}</h1>
-    <h1>{this.state.expDesc}</h1>
-    {this.state.expArray.map((note, index) => <div key={index}>{note}</div>)}
+    <form id="popForm" style={{float:"right"}}>
+    
+     <label>Expense:</label>
      <input type="number" name="newExpense" placeholder="Add the Expense here" onChange={this.acceptExpense}></input>
-     <input type="text" name="expDesc" placeholder="Add comment as needed" onChange={this.acceptExpense}></input>
+     <label>Description:</label> 
+     <input type="text" name="expDesc" placeholder="Add comment as needed" onChange={this.acceptExpense}></input> <br/><br/>
      <button name="submit" onClick={this.submitExpense}>Submit</button>
      <input type="reset" name="reset" value="Reset"></input>
+     <button name="close" onClick={this.aweSome}>Close</button>
+
 
     </form>
     );

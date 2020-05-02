@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Add from './AddIncome';
 import Exp from './AddExpense';
+import './App.css';
+
 
 
 class App extends Component {
@@ -9,61 +11,58 @@ class App extends Component {
     this.state={
       dispAddInc: false,
       dispAddExp: false,
-      renderArrayExp: [...JSON.parse(localStorage.getItem('expStore'))],
-      renderArrayExp2: [...JSON.parse(localStorage.getItem('exp2Store'))],
-      renderArrayInc: [...JSON.parse(localStorage.getItem('incStore'))],
-      renderArrayInc2: [...JSON.parse(localStorage.getItem('inc2Store'))]
-
-    }
+      renderArrayValue: (localStorage.getItem('valueStore')) ? [...JSON.parse(localStorage.getItem('valueStore'))] : [Number],
+      renderArrayDesc: (localStorage.getItem('descStore')) ? [...JSON.parse(localStorage.getItem('descStore'))] : [String]
+    }    
     this.showSelected = this.showSelected.bind(this);
-
   }
-  componentDidMount() {
-    const storeGetExp = JSON.parse(localStorage.getItem('expStore'));
-    const storeGetInc = JSON.parse(localStorage.getItem('incStore'));
- 
 
-      alert('mounted');
-      alert ("Total Expense Entries: " + (storeGetExp) ? storeGetExp.length : 0);
-      alert ("Total Income Entries: "  + (storeGetInc) ? storeGetInc.length : 0);
-    
+  componentDidMount() {
+    const storeGetValue = JSON.parse(localStorage.getItem('valueStore'));
+
+ //     alert('mounted' + storeGetValue.map(data=>data));
+      alert ("Total Entries: " + ((storeGetValue !== null) ? (storeGetValue.length) : 0) ); 
+     
   }
 
 showSelected(opt) {
   switch(opt) {
     case "dispAddInc":
-      this.setState({dispAddInc: !this.state.dispAddInc});
+      this.setState({dispAddInc: !this.state.dispAddInc, dispAddExp: false});
       break;
     case "dispAddExp":
-      this.setState({dispAddExp: !this.state.dispAddExp});
+      this.setState({dispAddExp: !this.state.dispAddExp,dispAddInc: false});
       break;
     default:
+      alert ('gotcha');
       break;
   }
 }
+
 render() {
   const {dispAddInc,dispAddExp} = this.state;
+  var totInc = (this.state.renderArrayValue.filter(data => +(data > 0))).reduce(((a,c)=>{return a + c}),0);
+  var totExp = (this.state.renderArrayValue.filter(data => data < 0)).reduce(((a,c)=>{return a + c}),0);
+
   return (
     <div className="Home">
       {dispAddInc && <Add />}
-      <hr />
       {dispAddExp && <Exp />}
-      <hr />
 
     <div className="Summary">
-      <header className="App-header">
-        <h1>Balance</h1>
-        <h3>Amount Here</h3>
-        <p>Income</p> <p>$ Income here</p> <p>Expense</p> <p>$ Expense Here</p>        
+      <header className="App-head">
+        <h3>Balance</h3>
+        <h1>Rs. {totInc + totExp}</h1>
+        <h4> <span style={{color:"green"}}>Income : Rs.   {totInc}</span> &nbsp;&nbsp;
+             <span style={{color:"red"}}>  Expense :Rs.  {totExp}</span> </h4>
       </header>
     </div>
 
-    <hr></hr>
+    <hr/>
 
     <h1 id="data">
 
-  {this.state.renderArrayExp.map((data,index) => <div> {"-" + data}  {this.state.renderArrayExp2[index]} </div>)}
-  {this.state.renderArrayInc.map((data,index) => <div> {'+' + data}  {this.state.renderArrayInc2[index]} </div>)}
+  {this.state.renderArrayValue.map((data,index) => <div> {data}  {this.state.renderArrayDesc[index]} </div>)}
 
     </h1>
 
