@@ -10,6 +10,4 @@
 	5. AddIncome.js - renders a popup form to accept new income details
 	
 #### Components being worked upon
-	1. A math module with all possible calculations and that renders the final tally of amount and lists down the entries made so far
-	2. Styling (CSS)
-	3. few more storage activities using browser local storage
+	1. Styling (CSS)
