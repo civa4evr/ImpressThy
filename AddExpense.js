@@ -63,7 +63,7 @@ componentDidUpdate(preProp,preState) {
      <label>Expense:</label>
      <input type="number" name="newExpense" placeholder="Add the Expense here" onChange={this.acceptExpense}></input>
      <label>Description:</label> 
-     <input type="text" name="expDesc" placeholder="Add comment as needed" onChange={this.acceptExpense}></input> <br/><br/>
+     <input type="text" name="expDesc" placeholder="Add comment as needed" onChange={this.acceptExpense}></input> <br/>
      <button name="submit" onClick={this.submitExpense}>Submit</button>
      <input type="reset" name="reset" value="Reset"></input>
      <button name="close" onClick={this.aweSome}>Close</button>

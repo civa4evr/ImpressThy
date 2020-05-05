@@ -45,35 +45,32 @@ render() {
   var totExp = (this.state.renderArrayValue.filter(data => data < 0)).reduce(((a,c)=>{return a + c}),0);
 
   return (
-    <div className="Home">
-      {dispAddInc && <Add />}
-      {dispAddExp && <Exp />}
+  <div className="Home">
 
-    <div className="Summary">
-      <header className="App-head">
+
+    <div className="App-head">
+      <div className="Summary">
         <h3>Balance</h3>
         <h1>Rs. {totInc + totExp}</h1>
         <h4> <span style={{color:"green"}}>Income : Rs.   {totInc}</span> &nbsp;&nbsp;
              <span style={{color:"red"}}>  Expense :Rs.  {totExp}</span> </h4>
-      </header>
+      </div>
+      <div className="popit">
+        {dispAddInc && <Add />}
+        {dispAddExp && <Exp />}
+      </div>
     </div>
 
-    <hr/>
-
-    <h1 id="data">
-
-  {this.state.renderArrayValue.map((data,index) => <div> {data}  {this.state.renderArrayDesc[index]} </div>)}
-
-    </h1>
-
-    <hr></hr>
+    <div className="entryBlock">
+      {this.state.renderArrayValue.map((data,index) => <div className="entryWrap"> <div className="entry">{data}</div> <div className="entry">{this.state.renderArrayDesc[index]}</div> <hr/> </div>)}
+    </div>
 
     <div className="Action">
-      <button id="AddInc" onClick={() => this.showSelected("dispAddInc")}>Add Income</button>
+      <button id="AddInc" onClick={() => this.showSelected("dispAddInc")}>Add Income</button> &nbsp;&nbsp;
       <button id="AddExp" onClick={() => this.showSelected("dispAddExp")}>Add Spending</button>
     </div>
 
-    </div>  
+  </div>  
   );
   }
 }

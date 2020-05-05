@@ -66,7 +66,7 @@ class Add extends React.Component{
      <label>Income: </label>
      <input type="number" name="newIncome" placeholder="Add the Income here" onChange={this.acceptIncome}></input>
      <label>Description: </label>
-     <input type="text" name="incDesc" placeholder="Add comment if needed" onChange={this.acceptIncome}></input> <br/><br/>
+     <input type="text" name="incDesc" placeholder="Add comment if needed" onChange={this.acceptIncome}></input> <br/>
      <button name="submit" onClick={this.submitIncome}>Submit</button>
      <input type="reset" name="reset" value="Reset"></input>
      <button name="close" onClick={this.aweSome}>Close</button>

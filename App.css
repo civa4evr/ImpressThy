@@ -2,19 +2,79 @@
   text-align: center;
 }
 
-.Summary {
+.App-head {
   background-color: cadetblue;
+  height:200px;
+  border-style: ridge;
+  border-color: slateblue;  
+  position: sticky;
+  top:0;
 }
+.Summary{
+  width: 50%;
+  float:left;
+  height:200px; 
+}
+.popit{
+  width: 50%;
+  float:left;
+  height:200px;
+}
+
+.Action {
+  background-color: cadetblue;
+  width: auto;
+  height:35px;
+  vertical-align: middle;
+  overflow:hidden;
+  display: flex;
+  align-items: center;
+  padding: 5px 5px;
+  border-style: ridge;
+  border-color: slateblue;
+  position: sticky;
+  bottom:0;
+}
+
+.Action button {
+  background-color:slateblue;
+  float:left;
+  border-style: ridge;
+  outline:rosybrown;
+  cursor: pointer;
+  padding: 5px 10px;
+  transition: 0.3s;
+  font-size: 12px;
+  font-style: oblique;
+  font-weight: bolder ;
+  }
 
 #popForm {
   width: 300px;
-  border: 1px solid #ccc;
   padding: 14px;
-  background-color: brown ;
+  background-color: rgb(187, 161, 221);
   background-size:100%;
-  height:400px;
-  line-height:90px ;
+  height:auto;
+  line-height:56px ;
+  border-style:groove;
+  border-color: slateblue;  
+  position: relative;  
 }
+
+.entryBlock{
+  border-style: ridge;
+  border-color: slateblue; 
+}
+
+.entryWrap {
+  background-color: rgb(187, 161, 221);
+  width: auto;
+}
+
+.entry {
+  width: 50%;
+  float: left;  
+}  
 
 .App-logo {
   height: 40vmin;
