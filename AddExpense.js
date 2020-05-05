@@ -11,11 +11,7 @@ class Exp  extends React.Component {
     };
   }
   aweSome () {
-//    alert('bye');
       alert ('bye');
-//    this.props.aweSome("dispAddExp");
-//    this.props.aweSome("dispAddInc");
-
   }
 
   acceptExpense = (event) => {
@@ -50,7 +46,6 @@ componentDidUpdate(preProp,preState) {
     const storePut2 = JSON.stringify(this.state.expArray2);
     localStorage.setItem('descStore',storePut2);
     
-    alert ('working : ' + storePut)
     alert ('New Expense Added - ' + this.state.expDesc + ' : ' + this.state.newExpense);
   } 
 }

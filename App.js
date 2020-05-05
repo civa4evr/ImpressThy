@@ -20,8 +20,7 @@ class App extends Component {
   componentDidMount() {
     const storeGetValue = JSON.parse(localStorage.getItem('valueStore'));
 
- //     alert('mounted' + storeGetValue.map(data=>data));
-      alert ("Total Entries: " + ((storeGetValue !== null) ? (storeGetValue.length) : 0) ); 
+      alert ("Total Entries: " + ((storeGetValue !== null) ? (storeGetValue.length-1) : 0) ); 
      
   }
 

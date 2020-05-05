@@ -13,11 +13,7 @@ class Add extends React.Component{
 
 
   aweSome () {
-    //    alert('bye');
-          alert ('bye');
-    //    this.props.aweSome("dispAddExp");
-    //    this.props.aweSome("dispAddInc");
-    
+          alert ('bye');    
       }
 
   acceptIncome = (event) => {
@@ -53,7 +49,6 @@ class Add extends React.Component{
       const storePut2 = JSON.stringify(this.state.incArray2);
       localStorage.setItem('descStore',storePut2);
 
-      alert ('working : ' + storePut)
       alert ('New Income Added - ' + this.state.incDesc + ' : ' + this.state.newIncome);
     }
   }
