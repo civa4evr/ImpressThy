@@ -2,6 +2,7 @@
 ### Used VisualStudioCode to host the server.
 	After having the required modules in place, the following command would render the home page
 ***npm run build***
+
 ***npm start***
 #### Files available
 	1. index.js - the ultimate DOM rendering module	
